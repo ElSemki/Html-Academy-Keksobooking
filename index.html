@@ -145,6 +145,8 @@
 					method="post"
 					enctype="multipart/form-data"
 					autocomplete="off"
+					,
+					action=" https://23.javascript.pages.academy/keksobooking"
 				>
 					<fieldset class="ad-form-header">
 						<legend class="ad-form-header__title">
@@ -188,6 +190,9 @@
 							name="title"
 							type="text"
 							placeholder="Милая, уютная квартирка в центре Токио"
+							required
+							minlength="30"
+							maxlength="100"
 						/>
 					</fieldset>
 					<fieldset class="ad-form__element ad-form__element--wide">
@@ -207,7 +212,14 @@
 					</fieldset>
 					<fieldset class="ad-form__element">
 						<label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-						<input id="price" name="price" type="number" placeholder="5000" />
+						<input
+							id="price"
+							name="price"
+							type="number"
+							max="1000000"
+							placeholder="1000"
+							required
+						/>
 					</fieldset>
 					<fieldset class="ad-form__element ad-form__element--time">
 						<label class="ad-form__label" for="timein"
@@ -238,9 +250,9 @@
 					<fieldset class="ad-form__element">
 						<label class="ad-form__label" for="capacity">Количество мест</label>
 						<select id="capacity" name="capacity">
-							<option value="3" selected>для 3 гостей</option>
+							<option value="3">для 3 гостей</option>
 							<option value="2">для 2 гостей</option>
-							<option value="1">для 1 гостя</option>
+							<option value="1" selected>для 1 гостя</option>
 							<option value="0">не для гостей</option>
 						</select>
 					</fieldset>

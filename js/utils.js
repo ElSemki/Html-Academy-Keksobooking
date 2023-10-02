@@ -20,4 +20,9 @@ function getRandomFloat(min, max, decimals = 0) {
 	return parseFloat((Math.random() * (max - min) + min).toFixed(decimals));
 }
 
-export { getRandomFloat, getRandomIntInclusive };
+function showInvalidValueInputError(inputElement, message) {
+	inputElement.style.border = '1px solid red';
+	inputElement.setCustomValidity(message);
+}
+
+export { getRandomFloat, getRandomIntInclusive, showInvalidValueInputError };
