@@ -25,4 +25,27 @@ function showInvalidValueInputError(inputElement, message) {
 	inputElement.setCustomValidity(message);
 }
 
-export { getRandomFloat, getRandomIntInclusive, showInvalidValueInputError };
+async function getData(url) {
+	const response = await fetch(url);
+	if (!response.ok) {
+		throw new Error(`${response.status}: ${response.statusText}`);
+	}
+	return await response.json();
+}
+
+async function postData(url, data) {
+	const response = await fetch(url, {
+		method: 'POST',
+		body: data,
+	});
+
+	return await response.json();
+}
+
+export {
+	getData,
+	getRandomFloat,
+	getRandomIntInclusive,
+	postData,
+	showInvalidValueInputError,
+};

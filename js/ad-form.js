@@ -102,7 +102,7 @@ adForm.addEventListener('input', evt => {
 			);
 		}
 
-		if (parseInt(priceInput.value) > 1000000) {
+		if (parseInt(priceInput.value) > 10e6) {
 			showInvalidValueInputError(priceInput, 'Максимальное значение 1 000 000');
 		}
 

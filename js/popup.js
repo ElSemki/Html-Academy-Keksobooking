@@ -28,7 +28,7 @@ function createPopup({ author, offer }) {
 		'.popup__text--time'
 	).textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}.`;
 
-	if (offer.features.length) {
+	if (offer.features?.length) {
 		popupElement.querySelector('.popup__features').innerHTML = '';
 		offer.features.forEach(feature => {
 			const featureElement = document.createElement('li');
@@ -43,7 +43,7 @@ function createPopup({ author, offer }) {
 	popupElement.querySelector('.popup__description').textContent =
 		offer.description;
 
-	if (offer.photos.length) {
+	if (offer.photos?.length) {
 		popupElement.querySelector('.popup__photos').innerHTML = '';
 		offer.photos.forEach(photo => {
 			const imgElement = document.createElement('img');
@@ -59,6 +59,10 @@ function createPopup({ author, offer }) {
 	}
 
 	popupElement.querySelector('.popup__avatar').src = author.avatar;
+	popupElement.querySelector('.popup__avatar').onerror = function () {
+		this.onerror = null;
+		this.src = './img/avatars/default.png';
+	};
 
 	return popupElement;
 }
