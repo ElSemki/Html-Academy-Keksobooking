@@ -1,3 +1,4 @@
+import { renderFilterAds } from './filter-map-form.js';
 import { getData } from './utils.js';
 
 async function renderAds(callback) {
@@ -5,7 +6,8 @@ async function renderAds(callback) {
 		const adArray = await getData(
 			'https://23.javascript.pages.academy/keksobooking/data'
 		);
-		callback(adArray.slice(0, 10));
+		callback(adArray);
+		renderFilterAds(() => callback(adArray));
 	} catch (e) {
 		console.error(e);
 	}

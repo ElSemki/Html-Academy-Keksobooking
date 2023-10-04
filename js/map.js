@@ -1,6 +1,6 @@
 /* global L:readonly */
 import { initializingTheAdForm } from './ad-form.js';
-import { initializingTheFilterMapForm } from './filter-map-form.js';
+import { filterAds, initializingTheFilterMapForm } from './filter-map-form.js';
 import { createPopup } from './popup.js';
 import { renderAds } from './render-ads.js';
 
@@ -57,23 +57,30 @@ mainPinMarker.on('moveend', evt => {
 	addressInput.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
 });
 
-function printAdsToMap(arr) {
-	arr.forEach(ad => {
-		const icon = L.icon({
-			iconUrl: '../leaflet/img/pin.svg',
-			iconSize: [40, 40],
-			iconAnchor: [20, 40],
-		});
+const markers = [];
 
-		const marker = L.marker(
-			{
-				lat: ad.location.lat,
-				lng: ad.location.lng,
-			},
-			{
-				icon,
-			}
-		);
-		marker.addTo(map).bindPopup(createPopup(ad), { keepInView: true });
-	});
+function printAdsToMap(arr) {
+	markers.forEach(marker => map.removeLayer(marker));
+	arr
+		.filter(filterAds)
+		.slice(0, 10)
+		.forEach(ad => {
+			const icon = L.icon({
+				iconUrl: '../leaflet/img/pin.svg',
+				iconSize: [40, 40],
+				iconAnchor: [20, 40],
+			});
+
+			const marker = L.marker(
+				{
+					lat: ad.location.lat,
+					lng: ad.location.lng,
+				},
+				{
+					icon,
+				}
+			);
+			markers.push(marker);
+			marker.addTo(map).bindPopup(createPopup(ad), { keepInView: true });
+		});
 }

@@ -7,6 +7,7 @@ const typeOfPremises = {
 	bungalow: 'Бунгало',
 	house: 'Дом',
 	palace: 'Дворец',
+	default: 'Помещение',
 };
 
 function createPopup({ author, offer }) {
@@ -20,7 +21,7 @@ function createPopup({ author, offer }) {
 	).textContent = `${offer.price} ₽/ночь.`;
 
 	popupElement.querySelector('.popup__type').textContent =
-		typeOfPremises[offer.type];
+		typeOfPremises[offer.type] || typeOfPremises.default;
 	popupElement.querySelector(
 		'.popup__text--capacity'
 	).textContent = `${offer.rooms} комнат для ${offer.guests} гостей.`;
