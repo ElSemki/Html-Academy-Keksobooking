@@ -52,4 +52,4 @@ function adFormSubmitHandler(evt) {
 	sendForm(evt.target, formData);
 }
 
-export { adFormSubmitHandler };
+export { adFormSubmitHandler, resetAdForm };

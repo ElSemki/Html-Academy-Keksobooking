@@ -2,7 +2,7 @@ import {
 	adFormChangeHandler,
 	disabledInvalidOptions,
 } from './ad-form-change-parameters.js';
-import { adFormSubmitHandler } from './ad-form-send.js';
+import { adFormSubmitHandler, resetAdForm } from './ad-form-send.js';
 import { validateAdForm } from './ad-form-validate.js';
 
 const adForm = document.querySelector('.ad-form');
@@ -23,6 +23,7 @@ function initializingTheAdForm() {
 	adForm.addEventListener('input', validateAdForm);
 
 	adForm.addEventListener('submit', adFormSubmitHandler);
+	adForm.addEventListener('reset', () => resetAdForm(adForm));
 }
 
 export { adForm, initializingTheAdForm };
