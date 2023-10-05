@@ -14,6 +14,9 @@ function addImageFromInput(input, photoContainer, width, height) {
 	const reader = new FileReader();
 
 	reader.addEventListener('load', () => {
+		if (photoContainer.querySelector('img')) {
+			photoContainer.querySelector('img').remove();
+		}
 		const img = document.createElement('img');
 		img.src = reader.result;
 		img.alt = 'пользовательское фото';

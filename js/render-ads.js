@@ -9,6 +9,7 @@ async function renderAds(callback) {
 		callback(adArray);
 		renderFilterAds(() => callback(adArray));
 	} catch (e) {
+		alert(e);
 		console.error(e);
 	}
 }

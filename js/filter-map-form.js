@@ -19,7 +19,13 @@ const housingPrice = {
 filterMapForm.querySelectorAll('select').forEach(el => (el.disabled = true));
 filterMapForm.querySelector('fieldset').disabled = true;
 
+function initializingTheFilterMapForm() {
+	filterMapForm.querySelectorAll('select').forEach(el => (el.disabled = false));
+	filterMapForm.querySelector('fieldset').disabled = false;
+}
+
 function renderFilterAds(cb) {
+	initializingTheFilterMapForm();
 	filterMapForm.addEventListener('change', cb);
 }
 
@@ -47,9 +53,16 @@ const filterAds = ({ offer }) =>
 		({ value, id }) => value === 'any' || filterRules[id](offer, value)
 	);
 
-function initializingTheFilterMapForm() {
-	filterMapForm.querySelectorAll('select').forEach(el => (el.disabled = false));
-	filterMapForm.querySelector('fieldset').disabled = false;
+function clearFilters() {
+	filterControlGroups.forEach(element => {
+		if (element.name) {
+			element.value = 'any';
+		} else {
+			element
+				.querySelectorAll('input')
+				.forEach(checkbox => (checkbox.checked = false));
+		}
+	});
 }
 
-export { filterAds, initializingTheFilterMapForm, renderFilterAds };
+export { clearFilters, filterAds, renderFilterAds };

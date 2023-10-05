@@ -1,3 +1,4 @@
+import { clearFilters } from '../filter-map-form.js';
 import { postData } from '../utils.js';
 
 async function sendForm(form, data) {
@@ -7,18 +8,16 @@ async function sendForm(form, data) {
 			data
 		);
 		console.log(response);
+		clearFilters();
+		form.reset();
 	} catch (e) {
 		console.error(e);
-	} finally {
-		form.reset();
 	}
 }
 
 function adFormSubmitHandler(evt) {
 	evt.preventDefault();
-
 	const formData = new FormData(evt.target);
-
 	sendForm(evt.target, formData);
 }
 

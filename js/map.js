@@ -1,6 +1,6 @@
 /* global L:readonly */
 import { initializingTheAdForm } from './ad-form/ad-form.js';
-import { filterAds, initializingTheFilterMapForm } from './filter-map-form.js';
+import { filterAds } from './filter-map-form.js';
 import { createPopup } from './popup.js';
 import { renderAds } from './render-ads.js';
 
@@ -11,14 +11,11 @@ const tokyoCenter = {
 
 const addressInput = document.querySelector('#address');
 
-addressInput.readOnly = true;
-addressInput.value = `${tokyoCenter.lat}, ${tokyoCenter.lng}`;
-
 const map = L.map('map-canvas')
 	.on('load', () => {
 		renderAds(printAdsToMap);
 		initializingTheAdForm();
-		initializingTheFilterMapForm();
+		addressInput.value = `${tokyoCenter.lat}, ${tokyoCenter.lng}`;
 	})
 	.setView(
 		{
@@ -84,3 +81,5 @@ function printAdsToMap(arr) {
 			marker.addTo(map).bindPopup(createPopup(ad), { keepInView: true });
 		});
 }
+
+export { printAdsToMap };
