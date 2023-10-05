@@ -7,12 +7,15 @@ import { validateAdForm } from './ad-form-validate.js';
 
 const adForm = document.querySelector('.ad-form');
 
-adForm.classList.add('ad-form--disabled');
-adForm.querySelectorAll('fieldset').forEach(el => (el.disabled = true));
+function disabledActiveElementsAdForm(boolean) {
+	adForm.classList.toggle('ad-form--disabled');
+	adForm.querySelectorAll('fieldset').forEach(el => (el.disabled = boolean));
+}
+
+disabledActiveElementsAdForm(true);
 
 function initializingTheAdForm() {
-	adForm.classList.remove('ad-form--disabled');
-	adForm.querySelectorAll('fieldset').forEach(el => (el.disabled = false));
+	disabledActiveElementsAdForm(false);
 	disabledInvalidOptions(1, 'option:not([value="1"])');
 
 	adForm.addEventListener('change', adFormChangeHandler);

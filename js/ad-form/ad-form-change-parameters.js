@@ -67,4 +67,4 @@ function adFormChangeHandler(evt) {
 		roomNumbersSelect[+roomNumberSelect.value]();
 	}
 }
-export { adFormChangeHandler, disabledInvalidOptions };
+export { adFormChangeHandler, disabledInvalidOptions, minPriceForHousing };

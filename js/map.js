@@ -5,8 +5,8 @@ import { createPopup } from './popup.js';
 import { renderAds } from './render-ads.js';
 
 const tokyoCenter = {
-	lat: 35.6895,
-	lng: 139.692,
+	lat: 35.68435,
+	lng: 139.75399,
 };
 
 const addressInput = document.querySelector('#address');
@@ -82,4 +82,4 @@ function printAdsToMap(arr) {
 		});
 }
 
-export { printAdsToMap };
+export { printAdsToMap, tokyoCenter };

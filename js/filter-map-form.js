@@ -16,16 +16,17 @@ const housingPrice = {
 	},
 };
 
-filterMapForm.querySelectorAll('select').forEach(el => (el.disabled = true));
-filterMapForm.querySelector('fieldset').disabled = true;
-
-function initializingTheFilterMapForm() {
-	filterMapForm.querySelectorAll('select').forEach(el => (el.disabled = false));
-	filterMapForm.querySelector('fieldset').disabled = false;
+function disabledActiveElementsFilterForm(boolean) {
+	filterMapForm
+		.querySelectorAll('select')
+		.forEach(el => (el.disabled = boolean));
+	filterMapForm.querySelector('fieldset').disabled = boolean;
 }
 
+disabledActiveElementsFilterForm(true);
+
 function renderFilterAds(cb) {
-	initializingTheFilterMapForm();
+	disabledActiveElementsFilterForm(false);
 	filterMapForm.addEventListener('change', cb);
 }
 
