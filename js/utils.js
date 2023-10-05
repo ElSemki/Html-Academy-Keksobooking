@@ -1,28 +1,28 @@
-function getRandomIntInclusive(min, max) {
-	if (min < 0 || max < 0) return -1;
-
-	if (min > max) {
-		[min, max] = [max, min];
-	}
-
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function getRandomFloat(min, max, decimals = 0) {
-	if (min < 0 || max < 0) return -1;
-
-	if (min > max) {
-		[min, max] = [max, min];
-	}
-
-	return parseFloat((Math.random() * (max - min) + min).toFixed(decimals));
-}
-
 function showInvalidValueInputError(inputElement, message) {
 	inputElement.style.border = '1px solid red';
 	inputElement.setCustomValidity(message);
+}
+
+function addImageFromInput(input, photoContainer, width, height) {
+	const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+	const file = input.files[0];
+	const fileName = file.name.toLowerCase();
+	const matches = FILE_TYPES.some(it => fileName.endsWith(it));
+
+	if (!matches) return;
+
+	const reader = new FileReader();
+
+	reader.addEventListener('load', () => {
+		const img = document.createElement('img');
+		img.src = reader.result;
+		img.alt = 'пользовательское фото';
+		img.width = width;
+		img.height = height;
+		photoContainer.append(img);
+	});
+
+	reader.readAsDataURL(file);
 }
 
 async function getData(url) {
@@ -42,10 +42,4 @@ async function postData(url, data) {
 	return await response.json();
 }
 
-export {
-	getData,
-	getRandomFloat,
-	getRandomIntInclusive,
-	postData,
-	showInvalidValueInputError,
-};
+export { addImageFromInput, getData, postData, showInvalidValueInputError };

@@ -24,7 +24,7 @@ function createPopup({ author, offer }) {
 		typeOfPremises[offer.type] || typeOfPremises.default;
 	popupElement.querySelector(
 		'.popup__text--capacity'
-	).textContent = `${offer.rooms} комнат для ${offer.guests} гостей.`;
+	).textContent = `Комнат: ${offer.rooms}, мест: ${offer.guests}.`;
 	popupElement.querySelector(
 		'.popup__text--time'
 	).textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}.`;
