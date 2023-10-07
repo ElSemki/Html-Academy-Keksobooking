@@ -15,7 +15,6 @@ const map = L.map('map-canvas')
 	.on('load', () => {
 		renderAds(printAdsToMap);
 		initializingTheAdForm();
-		addressInput.value = `${tokyoCenter.lat}, ${tokyoCenter.lng}`;
 	})
 	.setView(
 		{
@@ -54,6 +53,17 @@ mainPinMarker.on('moveend', evt => {
 	addressInput.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
 });
 
+function setDefaultMapOptions() {
+	map.closePopup().setView(
+		{
+			lat: tokyoCenter.lat,
+			lng: tokyoCenter.lng,
+		},
+		13
+	);
+	mainPinMarker.setLatLng([tokyoCenter.lat, tokyoCenter.lng]).update();
+}
+
 const markers = [];
 
 function printAdsToMap(arr) {
@@ -82,4 +92,4 @@ function printAdsToMap(arr) {
 		});
 }
 
-export { printAdsToMap, tokyoCenter };
+export { printAdsToMap, setDefaultMapOptions };

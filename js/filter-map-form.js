@@ -43,9 +43,7 @@ const filterRules = {
 		const checkedCheckboxes = Array.from(
 			filterMapForm.querySelectorAll('[type="checkbox"]:checked')
 		);
-		return checkedCheckboxes.every(({ value }) =>
-			features.some(feature => feature === value)
-		);
+		return checkedCheckboxes.every(({ value }) => features.includes(value));
 	},
 };
 
@@ -55,15 +53,7 @@ const filterAds = ({ offer }) =>
 	);
 
 function clearFilters() {
-	filterControlGroups.forEach(element => {
-		if (element.name) {
-			element.value = 'any';
-		} else {
-			element
-				.querySelectorAll('input')
-				.forEach(checkbox => (checkbox.checked = false));
-		}
-	});
+	filterMapForm.reset();
 }
 
 export { clearFilters, filterAds, renderFilterAds };

@@ -27,18 +27,14 @@ function adFormChangeHandler(evt) {
 	if (evt.target.closest('#avatar')) {
 		addImageFromInput(
 			adForm.querySelector('#avatar'),
-			adForm.querySelector('.ad-form-header__preview'),
-			40,
-			40
+			adForm.querySelector('.ad-form-header__preview')
 		);
 	}
 
 	if (evt.target.closest('#images')) {
 		addImageFromInput(
 			adForm.querySelector('#images'),
-			adForm.querySelector('.ad-form__photo'),
-			70,
-			70
+			adForm.querySelector('.ad-form__photo')
 		);
 	}
 

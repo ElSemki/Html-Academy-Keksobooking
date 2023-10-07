@@ -23,6 +23,7 @@ function initializingTheAdForm() {
 	adForm.addEventListener('input', validateAdForm);
 
 	adForm.addEventListener('submit', adFormSubmitHandler);
+
 	adForm.addEventListener('reset', () => resetAdForm(adForm));
 }
 

@@ -3,7 +3,7 @@ function showInvalidValueInputError(inputElement, message) {
 	inputElement.setCustomValidity(message);
 }
 
-function addImageFromInput(input, photoContainer, width, height) {
+function addImageFromInput(input, photoContainer) {
 	const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 	const file = input.files[0];
 	const fileName = file.name.toLowerCase();
@@ -15,17 +15,21 @@ function addImageFromInput(input, photoContainer, width, height) {
 
 	reader.addEventListener('load', () => {
 		if (photoContainer.querySelector('img')) {
-			photoContainer.querySelector('img').remove();
+			photoContainer.querySelector('img').style.visibility = 'hidden';
 		}
-		const img = document.createElement('img');
-		img.src = reader.result;
-		img.alt = 'пользовательское фото';
-		img.width = width;
-		img.height = height;
-		photoContainer.append(img);
+		photoContainer.style.backgroundImage = `url(${reader.result})`;
+		photoContainer.style.backgroundSize = 'cover';
+		photoContainer.style.backgroundRepeat = 'no-repeat';
 	});
 
 	reader.readAsDataURL(file);
+}
+
+function removeImageFromInput(photoContainer) {
+	if (photoContainer.querySelector('img')) {
+		photoContainer.querySelector('img').style.visibility = 'visible';
+	}
+	photoContainer.style.backgroundImage = 'none';
 }
 
 async function getData(url) {
@@ -45,4 +49,13 @@ async function postData(url, data) {
 	return await response.json();
 }
 
-export { addImageFromInput, getData, postData, showInvalidValueInputError };
+const isEscEvent = evt => evt.code === 'Escape' || evt.code === 'Esc';
+
+export {
+	addImageFromInput,
+	getData,
+	isEscEvent,
+	postData,
+	removeImageFromInput,
+	showInvalidValueInputError,
+};
