@@ -34,9 +34,9 @@ function resetAdForm(form) {
 	removeImageFromInput(form.querySelector('.ad-form-header__preview'));
 	removeImageFromInput(form.querySelector('.ad-form__photo'));
 
+	form.querySelector('#type').selectedIndex = 1;
 	form.querySelector('#price').min =
 		minPriceForHousing[form.querySelector('#type').value];
-
 	form.querySelector('#price').placeholder =
 		minPriceForHousing[form.querySelector('#type').value];
 
